@@ -23,9 +23,6 @@ Usage:
 The commands are:{{range .}}{{if .Runnable}}
 	{{.Name | printf "%-11s"}} {{.Short}}{{end}}{{end}}
 
-	rec    record program
-	server run http server
-
 Use "pt3 help [command]" for more information about a command.
 
 `
@@ -35,7 +32,7 @@ var helpTemplate = `{{if .Runnable}}usage: pt3 {{.UsageLine}}
 {{end}}{{.Long | trim}}
 `
 
-// A Command is an implementation of a pt3 command
+// A Command is an implementation of a pt3 command.
 type Command struct {
 	// Run runs the command.
 	// The args are the arguments after the command name.

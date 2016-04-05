@@ -5,6 +5,7 @@ import (
 	"os"
 )
 
+// Tune tunes the recording
 func Tune(r *Record, device string) error {
 	c := r.Channel
 
@@ -17,9 +18,9 @@ func Tune(r *Record, device string) error {
 	if device == "" {
 		var devices []string
 		switch c.channelType {
-		case ChannelTypeSatellite:
+		case channelTypeSatellite:
 			devices = bsDevices
-		case ChannelTypeGround:
+		case channelTypeGround:
 			devices = isdbtDevices
 		}
 

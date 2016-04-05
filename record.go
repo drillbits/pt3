@@ -8,6 +8,7 @@ import (
 	"time"
 )
 
+// Record represents the state of an recording.
 type Record struct {
 	Tuner       io.Reader
 	Destination io.Writer
@@ -19,6 +20,7 @@ type Record struct {
 	Indefinite  bool
 }
 
+// NewRecord returns a new recording state.
 func NewRecord(args []string) (*Record, error) {
 	r := &Record{}
 
@@ -50,6 +52,7 @@ func NewRecord(args []string) (*Record, error) {
 	return r, nil
 }
 
+// SetTime sets recording duration.
 func (r *Record) SetTime(s string) error {
 	if s == "-" {
 		r.Indefinite = true
@@ -69,6 +72,7 @@ func (r *Record) SetTime(s string) error {
 	return nil
 }
 
+// SetDestination sets the recording destination.
 func (r *Record) SetDestination(s string) error {
 	if s == "-" {
 		r.Destination = os.Stdout
@@ -84,6 +88,7 @@ func (r *Record) SetDestination(s string) error {
 	return nil
 }
 
+// IsAvailable reports whether the recording is available.
 func (r *Record) IsAvailable() bool {
 	return r.Channel != nil && (r.RecSec > 0 || r.Indefinite) && r.Destination != nil
 }
